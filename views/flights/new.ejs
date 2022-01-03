@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Flight</title>
+</head>
+
+<body>
+    <h2>Enter a New Flight</h2>
+    <!-- its a post request, and the endpoint is /flights -->
+
+    <form action="/flights" method="POST">
+        <label>Airline:
+            <select name="airline">
+                <option> </option>
+                <option value="American">American Airlines</option>
+                <option value="Delta">Delta Airlines</option>
+                <option value="Soutwest">Southwest Airlines</option>
+                <option value="United">United Airlines</option>
+            </select>
+        </label><br>
+
+        <label>Airport:
+            <select name="airport">
+                <option value="ATL">Atlanta</option>
+                <option value="DFW">Dallas/Fort Worth</option>
+                <option value="DEN" selected>Denver</option>
+                <option value="LAX">Los Angeles</option>
+                <option value="SAN">San Diego</option>
+            </select>
+        </label><br>
+
+        <label>Flight Number:
+            <input type="text" name="flightNo" placeholder="Between 10 and 9999">
+        </label><br>
+
+        <label>Departure date:
+            <input type="datetime-local" name="departs" min="2022-01-01T00:00" value="2023-01-01T00:00">
+        </label><br>
+
+        <input type="submit" value="Add Flight">
+    </form>
+
+</body>
+</html>

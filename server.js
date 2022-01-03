@@ -5,13 +5,23 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var flightsRouter = require('./routes/flights');
 
 var app = express();
+//executes database.js file, therefore connecting with mongodb
+require('./config/database');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+
+app.use(function(req, res, next) {
+  // Add a time property to the req object
+  req.date = new Date().toLocaleDateString();
+  next();
+});
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -20,7 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/flights', flightsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
