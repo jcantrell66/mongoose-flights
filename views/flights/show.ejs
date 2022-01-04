@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flights</title>
+</head>
+
+<body>
+
+    <section id="show-page">
+        <div>Airline:</div>
+        <div>
+            <%= flight.airline %>
+        </div>
+        <div>Airport:</div>
+        <div>
+            <%= flight.airport %>
+        </div>
+        <div>Flight Number:</div>
+        <div>
+            <%= flight.flightNo %>
+        </div>
+        <div>Departure:</div>
+        <div>
+            <%= flight.departs %>
+        </div>
+    </section>
+
+
+
+    <% if (flight.destinations.length) { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Airport</th>
+              <th>Arrival date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% flight.destinations.forEach(function(d) { %>
+              <tr>
+                <% // formats the date string to something readable %>
+                <td><%= d.airport %></td>
+                <td><%= d.arrival %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      <% } else { %>
+        <h5>No Destination Added</h5>
+      <% } %>
+
+
+    <br><br>
+    <h2>Add destination:</h2>
+    <form id="add-review-form" method="POST" action="/flights/<%= flight._id %>/destinations">
+        <label>Destination:</label>
+        <select name="airport">
+            <option value="AUS">Austin</option>
+            <option value="DFW">Dallas/Fort Worth</option>
+            <option value="DEN">Denver</option>
+            <option value="LAX">Los Angeles</option>
+            <option value="SAN">San Diego</option>
+        </select>
+        <label>Arrival date:</label>
+        <input type="datetime-local" name="arrival" min="2022-01-01T00:00" value="2023-01-01T00:00">
+        <input type="submit" value="Add destination">
+    </form>
+
+
+
+</body>
+</html>
