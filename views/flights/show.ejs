@@ -28,8 +28,7 @@
             <%= flight.departs %>
         </div>
     </section>
-
-
+    <br>
 
     <% if (flight.destinations.length) { %>
         <table>
@@ -52,11 +51,36 @@
       <% } else { %>
         <h5>No Destination Added</h5>
       <% } %>
+      <br>
 
+      <% if (ticket.length) { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Seat Number</th>
+              <th>Ticket Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% ticket.forEach(function(t) { %>
+              <tr>
+                <% // formats the date string to something readable %>
+                <td><%= t.seat %></td>
+                <td><%= t.price %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      <% } else { %>
+        <h5>No Tickets Added</h5>
+      <% } %>
+      <br>
 
-    <br><br>
+      <a href="/flights/<%= flight._id %>/tickets/new">Add tickets</a>
+
+    <br>
     <h2>Add destination:</h2>
-    <form id="add-review-form" method="POST" action="/flights/<%= flight._id %>/destinations">
+    <form id="add-destination-form" method="POST" action="/flights/<%= flight._id %>/destinations">
         <label>Destination:</label>
         <select name="airport">
             <option value="AUS">Austin</option>
