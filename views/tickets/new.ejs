@@ -9,7 +9,6 @@
 </head>
 
 <body>
-    <p><%= flightId %> </p>
     <form id="add-ticket-form" action="/flights/<%- flightId %>/tickets" method="POST">
         <label>Seat number:</label>
         <input name="seat" required pattern="[A-F][1-9]\d?">

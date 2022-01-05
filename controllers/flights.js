@@ -56,12 +56,12 @@ function create(req, res) {
 
 function show(req, res) {
     Flight.findById(req.params.id, function (err, flightDoc) {
-        Ticket.find({ flightDoc: flightDoc._id }, function (err, ticketDoc) {
-            // console.log(ticketDoc, '<= ticketDoc');
+        Ticket.find({ flight: req.params.id}, function(err, ticketDoc) {
             res.render('flights/show', {
                 flight: flightDoc,
                 ticket: ticketDoc
             })
         })
+        
     })
 }
